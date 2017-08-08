@@ -19,12 +19,12 @@ Remember to use notes from todays lecture as a point of reference.
 
 Endpoints  
 
-GET /api/dinosaurs
-GET /api/dinosaurs/:id
-GET /api/dinosuars/:id/habitats
-POST /api/dinosaurs
-PUT /api/dinosaurs/:id
-DELETE /api/dinosaurs/:id
+1GET /api/dinosaurs- check
+2GET /api/dinosaurs/:id
+3GET /api/dinosuars/:id/habitats
+4POST /api/dinosaurs
+5PUT /api/dinosaurs/:id
+6DELETE /api/dinosaurs/:id
 Level 1  
 
 create a new repository and project

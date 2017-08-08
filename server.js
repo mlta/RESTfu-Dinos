@@ -11,14 +11,8 @@ app.set("view engine", "mst")
 app.use(express.static("public"))
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extend: false }))
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get("/", (req, res) => {
-  res.render("index", allDinos[1])
-})
-
-// This array is only for demostration purposes
-// in the `future` this would a database
 let allDinos = [
   {
     id: 1,
@@ -45,3 +39,56 @@ let allDinos = [
     languages: "yes"
   }
 ]
+
+app.get("/api/dinosaurios", (req, res) => {
+  res.render("index", allDinos[1])
+  //
+
+  // This array is only for demostration purposes
+  // in the `future` this would a database
+
+  res.json(allDinos)
+})
+
+// 2
+
+app.get("/api/dinosaurios/:id", (req, res) => {
+  const dinoId = parseInt(req.params.id)
+  const myDino = allDinos.find(bot => {
+    return bot.id === dinoId
+  })
+  res.json(myDino)
+})
+
+// 3
+
+app.get("/api/dinosaurios/:id/name", (req, res) => {
+  const dinoId = parseInt(req.params.id)
+  const myDino = allDinos.find(bot => {
+    return bot.id === dinoId
+  })
+  res.json(myDino.name)
+})
+
+//4
+
+app.post("/api/dinosaurios", (req, res) => {
+  let newDino = {
+    id: allDinos.length + 1,
+    name: req.body.name,
+    colors: req.body.colors,
+    languages: req.body.languages
+  }
+  allDinos.push(newDino)
+  res.json(newDino)
+})
+//5
+app.delete("/api/dinosaurios/:id", (req, res) => {
+  const dinoId = parseInt(req.params.id)
+  allDinos = allDinos.filter(bot => bot.id !== dinoId)
+  res.json(allDinos)
+})
+
+app.listen(3000, () => {
+  console.log("We are rocking on 3000")
+})
